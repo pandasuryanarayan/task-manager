@@ -42,7 +42,7 @@ body {
   background-color: #c82333;
 }
 
-.board-form {
+.board-form, .task-form {
   display: flex;
   margin-bottom: 20px;
 }
@@ -68,20 +68,25 @@ body {
   background-color: #0056b3;
 }
 
-.board-list {
+.board-list, .task-list {
   margin-top: 20px;
 }
 
-.board-item {
+.board-item, .task-item {
   background-color: white;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
 }
 
 .board-item h2 {
   font-size: 20px;
+  margin-right: auto;
 }
 
 .login-container, .signup-container {
@@ -142,6 +147,19 @@ body {
 
 .signup-link a:hover, .login-link a:hover {
   text-decoration: underline;
+}
+
+.delete-button {
+  padding: 10px 10px;
+  background-color: #ff4b5c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #ff1f3c;
 }
 
 .error-message {

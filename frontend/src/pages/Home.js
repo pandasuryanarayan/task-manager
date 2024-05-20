@@ -1,15 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
 const Home = () => {
-  const { user, logout, User } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   const [boards, setBoards] = useState([]);
   const [boardName, setBoardName] = useState('');
+  const navigate = useNavigate();
 
-  console.log(user.username);
   useEffect(() => {
     const fetchBoards = async () => {
+      // http://localhost:8000/api/boards
       const response = await axios.get('http://localhost:8000/api/boards', {
         headers: { Authorization: `Bearer ${user.token}` },
       });
@@ -21,6 +23,7 @@ const Home = () => {
 
   const handleCreateBoard = async (e) => {
     e.preventDefault();
+    // http://localhost:8000/api/boards
     const response = await axios.post(
       'http://localhost:8000/api/boards',
       { name: boardName },
@@ -28,6 +31,18 @@ const Home = () => {
     );
     setBoards([...boards, response.data]);
     setBoardName('');
+  };
+
+  const handleDeleteBoard = async (id) => {
+    // http://localhost:8000/api/boards/${id}
+    await axios.delete(`http://localhost:8000/api/boards/${id}`, {
+      headers: { Authorization: `Bearer ${user.token}` },
+    });
+    setBoards(boards.filter(board => board._id !== id));
+  };
+
+  const handleBoardClick = (id) => {
+    navigate(`/boards/${id}`);
   };
 
   return (
@@ -48,8 +63,9 @@ const Home = () => {
       </form>
       <div className="board-list">
         {boards.map((board) => (
-          <div key={board._id} className="board-item">
-            <h2>{board.name}</h2>
+          <div key={board._id} className="board-item" onClick={() => handleBoardClick(board._id)}>
+          <h2 onClick={() => handleBoardClick(board._id)}>{board.name}</h2>
+          <button onClick={() => handleDeleteBoard(board._id)} className="delete-button">Delete Board</button>
             {/* Add task components and other functionalities here */}
           </div>
         ))}
