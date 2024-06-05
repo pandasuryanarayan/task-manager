@@ -4,7 +4,7 @@ import { AuthContext } from '../context/AuthContext';
 import { useParams } from 'react-router-dom';
 
 const Board = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   const { id } = useParams();
   const [tasks, setTasks] = useState([]);
   const [taskName, setTaskName] = useState('');
@@ -12,10 +12,11 @@ const Board = () => {
   useEffect(() => {
     // http://localhost:8000/api/tasks/${id}
     const fetchTasks = async () => {
-      const response = await axios.get(`http://localhost:8000/api/tasks/${id}`, {
+      const response = await axios.get(`http://localhost:8000/api/tasks/${id}/tasks`, {
         headers: { Authorization: `Bearer ${user.token}` },
       });
       setTasks(response.data);
+      console.log(response.data);
     };
 
     fetchTasks();
@@ -45,6 +46,7 @@ const Board = () => {
     <div className="container">
       <div className="header">
         <h1>Tasks</h1>
+        <button onClick={logout} className="logout-button">Logout</button>
       </div>
       <form onSubmit={handleCreateTask} className="task-form">
         <input
