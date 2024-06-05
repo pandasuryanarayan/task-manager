@@ -47,7 +47,7 @@ body {
   margin-bottom: 20px;
 }
 
-.board-input {
+.board-input, .task-input{
   flex: 1;
   padding: 10px;
   border: 1px solid #ddd;
@@ -81,12 +81,17 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.board-item h2, .task-item h2 {
+  font-size: 20px;
+  margin-right: auto;
   cursor: pointer;
 }
 
-.board-item h2 {
-  font-size: 20px;
-  margin-right: auto;
+.board-item h2:hover, .task-item h2:hover {
+  color: #0056b3;
+  text-decoration: underline;
 }
 
 .login-container, .signup-container {
