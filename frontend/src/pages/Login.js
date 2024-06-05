@@ -20,6 +20,7 @@ const Login = () => {
       await login(email, password);
       navigate('/');
     } catch (err) {
+      navigate('/login');
       setError('Login failed. Please try again.');
     }
   };
