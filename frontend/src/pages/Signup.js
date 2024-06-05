@@ -21,6 +21,7 @@ const Signup = () => {
       await signup(username, email, password);
       navigate('/login');
     } catch (err) {
+      navigate('/signup');
       setError('Signup failed. Please try again.');
     }
   };
