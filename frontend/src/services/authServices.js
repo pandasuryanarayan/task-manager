@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-// const API_URL = 'https://task-manager-g4t6.onrender.com/api/auth';
+// Here You can use any static hosting web page API URL like Render, etc
 const API_URL = 'http://localhost:8000/api/auth';
 
 const signup = (username, email, password) => {
