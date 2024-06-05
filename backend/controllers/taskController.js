@@ -17,7 +17,6 @@ exports.createTask = async (req, res) => {
 exports.getTasks = async (req, res) => {
   try {
     const tasks = await Task.find({ boardId: req.params.boardId });
-    console.log(tasks);
     res.json(tasks);
   } catch (error) {
     res.status(400).json({ error: 'Error fetching tasks' });
