@@ -16,10 +16,6 @@ const AuthProvider = ({ children }) => {
       const response = await authService.login(email, password);
       setUser(response.data);
       localStorage.setItem('user', JSON.stringify(response.data));
-      console.log(localStorage.getItem('user'));
-      console.log(response.data);
-      console.log("User: ", user);
-      console.log("Username: ", user.username);
     } catch (error) {
       console.error('Login error:', error.response ? error.response.data : error.message);
       throw error; // Rethrow to handle it in the component
