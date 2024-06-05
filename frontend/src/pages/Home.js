@@ -42,7 +42,8 @@ const Home = () => {
   };
 
   const handleBoardClick = (id) => {
-    navigate(`/boards/${id}`);
+    // navigate(`/boards/${id}/tasks`);
+    navigate(`/board/${id}/tasks`);
   };
 
   return (
@@ -63,7 +64,7 @@ const Home = () => {
       </form>
       <div className="board-list">
         {boards.map((board) => (
-          <div key={board._id} className="board-item" onClick={() => handleBoardClick(board._id)}>
+          <div key={board._id} className="board-item">
           <h2 onClick={() => handleBoardClick(board._id)}>{board.name}</h2>
           <button onClick={() => handleDeleteBoard(board._id)} className="delete-button">Delete Board</button>
             {/* Add task components and other functionalities here */}
